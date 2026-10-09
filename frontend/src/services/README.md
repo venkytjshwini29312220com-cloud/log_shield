@@ -1,0 +1,1 @@
+API and WebSocket clients. Base URL from VITE_LOGSHIELD_API / LOGSHIELD_SERVER_HOST.
