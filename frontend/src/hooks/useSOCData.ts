@@ -22,30 +22,34 @@ export function useSOCData() {
     try {
       setLoading(true);
       setError(null);
-    const [statsRes, incRes, evtRes, statusRes] = await Promise.all([
-      api.getStatistics().catch((e) => {
-        console.warn('Stats fetch error:', e);
-        return { total_events: 0, threats_detected: 0, active_incidents: 0, critical_incidents: 0, current_risk: 0, source: 'offline' };
-      }),
-      api.getIncidents({ limit: 50 }).catch((e) => {
-        console.warn('Incidents fetch error:', e);
-        return { items: [] };
-      }),
-      api.getEvents({ limit: 50 }).catch((e) => {
-        console.warn('Events fetch error:', e);
-        return { items: [] };
-      }),
-      api.getSystemStatus().catch((e) => {
-        console.warn('System status fetch error:', e);
-        return null;
-      }),
-    ]);
+      const [statsRes, incRes, evtRes, statusRes] = await Promise.all([
+        api.getStatistics().catch((e) => {
+          console.warn('Stats fetch error:', e);
+          return { total_events: 0, threats_detected: 0, active_incidents: 0, critical_incidents: 0, current_risk: 0, source: 'offline' };
+        }),
+        api.getIncidents({ limit: 50 }).catch((e) => {
+          console.warn('Incidents fetch error:', e);
+          return { items: [] };
+        }),
+        api.getEvents({ limit: 50 }).catch((e) => {
+          console.warn('Events fetch error:', e);
+          return { items: [] };
+        }),
+        api.getSystemStatus().catch((e) => {
+          console.warn('System status fetch error:', e);
+          return null;
+        }),
+      ]);
 
-    setStatistics(statsRes);
-    setIncidents(incRes.items || []);
-    setLiveEvents(evtRes.items || []);
-    if (statusRes) setSystemStatus(statusRes);
-    setLoading(false);
+      setStatistics(statsRes);
+      setIncidents(incRes.items || []);
+      setLiveEvents(evtRes.items || []);
+      if (statusRes) setSystemStatus(statusRes);
+    } catch (err: any) {
+      setError(err?.message || 'Failed to fetch data');
+    } finally {
+      setLoading(false);
+    }
   }, []);
 
   useEffect(() => {

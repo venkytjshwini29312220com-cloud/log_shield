@@ -6,7 +6,6 @@ import {
   Radio,
   Search,
   Send,
-  Trash2,
   X,
 } from 'lucide-react';
 import { api } from '../services/api';
@@ -371,17 +370,33 @@ export const LiveEventsPage: React.FC<LiveEventsPageProps> = ({ events }) => {
                 </div>
                 <div>
                   <label style={{ fontSize: '0.78rem', color: 'var(--text-muted)', display: 'block', marginBottom: '5px' }}>
-                    Action
+                    Status
                   </label>
-                  <input
-                    type="text"
-                    className="input-control"
+                  <select
+                    className="select-control"
                     style={{ width: '100%' }}
-                    value={emitAction}
-                    onChange={(e) => setEmitAction(e.target.value)}
-                    required
-                  />
+                    value={emitStatus}
+                    onChange={(e) => setEmitStatus(e.target.value)}
+                  >
+                    <option value="failure">failure</option>
+                    <option value="success">success</option>
+                    <option value="denied">denied</option>
+                  </select>
                 </div>
+              </div>
+
+              <div>
+                <label style={{ fontSize: '0.78rem', color: 'var(--text-muted)', display: 'block', marginBottom: '5px' }}>
+                  Action
+                </label>
+                <input
+                  type="text"
+                  className="input-control"
+                  style={{ width: '100%' }}
+                  value={emitAction}
+                  onChange={(e) => setEmitAction(e.target.value)}
+                  required
+                />
               </div>
 
               <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '10px', marginTop: '10px' }}>

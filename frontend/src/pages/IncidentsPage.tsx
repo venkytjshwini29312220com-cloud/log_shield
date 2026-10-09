@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import {
   AlertTriangle,
-  CheckCircle2,
   ExternalLink,
   Filter,
   Search,
@@ -9,7 +8,7 @@ import {
   User,
 } from 'lucide-react';
 import { api } from '../services/api';
-import { Incident, IncidentStatus, SeverityLevel } from '../types';
+import { Incident, IncidentStatus } from '../types';
 
 interface IncidentsPageProps {
   incidents: Incident[];
