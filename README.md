@@ -39,7 +39,7 @@ LogShield/
 
 ## Current status
 
-**Phase 10 complete:** Real-time WebSocket fan-out (`/ws/events`), streaming live event ingestion, alerts, incident correlation, risk changes, and analyst triage updates to downstream SOC dashboards without polling.
+**Phase 13 complete:** Three-laptop LAN network config, simulator CLI (scenarios A–F), and cross-machine CORS. Full pipeline: Laptop 1 (simulator) → Laptop 2 (AI engine) → Laptop 3 (React SOC dashboard).
 
 | Phase | Scope | Status |
 |-------|--------|--------|
@@ -53,9 +53,9 @@ LogShield/
 | 8 | Risk engine | Done |
 | 9 | Incident management | Done |
 | 10 | WebSocket fan-out | Done |
-| 11 | React dashboard | Not started |
-| 12 | Incident investigation page | Not started |
-| 13 | Three-laptop network config | Not started |
+| 11 | React dashboard | Done |
+| 12 | Incident investigation page | Done |
+| 13 | Three-laptop network config & simulator | Done |
 | 14 | Automated tests | Not started |
 | 15 | Hackathon demo polish | Not started |
 
@@ -82,3 +82,6 @@ This is a **controlled lab**. The simulator only emits predefined synthetic even
 - [Phase 8 notes](docs/phase-8.md)
 - [Phase 9 notes](docs/phase-9.md)
 - [Phase 10 notes](docs/phase-10.md)
+- [Phase 11 notes](docs/phase-11.md)
+- [Phase 12 notes](docs/phase-12.md)
+- [Phase 13 notes](docs/phase-13.md)

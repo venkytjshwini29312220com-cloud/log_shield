@@ -28,7 +28,7 @@ def create_app() -> FastAPI:
             "Laptop 2 prototype: log ingestion, hybrid detection (rule engine + Isolation Forest ML), "
             "correlation, explainable risk, incident analyst triage, and real-time WebSocket telemetry fan-out."
         ),
-        version="0.10.0",
+        version="0.13.0",
         lifespan=lifespan,
     )
     application.add_middleware(

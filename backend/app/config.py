@@ -30,7 +30,7 @@ class Settings(BaseSettings):
     weight_correlation: float = 0.25
     weight_behavioral: float = 0.15
     ml_model_label: str = "prototype Isolation Forest anomaly detector"
-    implementation_phase: int = Field(default=10, description="Highest completed implementation phase")
+    implementation_phase: int = Field(default=13, description="Highest completed implementation phase")
 
     @computed_field
     @property

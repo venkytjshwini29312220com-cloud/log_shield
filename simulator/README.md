@@ -1,25 +1,42 @@
-# LogShield event simulator (Laptop 1)
+# LogShield Simulator — Laptop 1
 
-Produces **synthetic** system/network/security events and POSTs them to Laptop 2.
+Emits controlled, deterministic synthetic attack events to the LogShield AI Engine (Laptop 2).
 
-**Phase 1:** layout only. Generators and HTTP client come with later phases.
+## Setup (Laptop 1)
 
-## Safety
+```powershell
+pip install requests python-dotenv
+```
 
-- Predefined scenarios only
-- No targeting of real hosts
-- No command execution
-- No exploit payloads
+Copy the root `.env.example` to `.env` and set `LOGSHIELD_SERVER_HOST` to Laptop 2's LAN IP.
 
-## Scenarios (planned)
+## Running
 
-| ID | File | Description |
+```powershell
+# From the LogShield root directory:
+
+# Interactive menu
+python -m simulator
+
+# Single scenario
+python -m simulator -s F          # Full kill-chain demo (CRITICAL incident)
+
+# Run all scenarios A → F
+python -m simulator -s ALL
+
+# Continuous stream (for sustained demo)
+python -m simulator -s F --loop --delay 0.3
+```
+
+## Scenarios
+
+| ID | Name | Description |
 |----|------|-------------|
-| A | `scenarios/normal.py` | Baseline activity |
-| B | `scenarios/failed_auth.py` | Repeated login failures |
-| C | `scenarios/fail_then_success.py` | Failures then success |
-| D | `scenarios/resource_access.py` | Suspicious resource access |
-| E | `scenarios/network.py` | Abnormal network behavior |
-| F | `scenarios/credential_compromise.py` | Correlated multi-stage demo |
+| A | Normal Baseline | Benign routine activity — no alerts expected |
+| B | Brute Force Auth | 12 rapid login failures → rule alert |
+| C | Credential Stuffing | Distributed IPs, single victim → ML anomaly |
+| D | Privilege Escalation | login → sudo → root chain → multi-rule alert |
+| E | Lateral Movement | Port scan → SMB pivot → C2 beacon |
+| F | Full Kill-Chain ⭐ | Recon → brute force → VPN breach → escalation → exfil → C2 → **CRITICAL** incident |
 
-Target URL: `http://$LOGSHIELD_SERVER_HOST:$LOGSHIELD_SERVER_PORT/api/events`
+> Scenario F is the recommended hackathon demo scenario.
